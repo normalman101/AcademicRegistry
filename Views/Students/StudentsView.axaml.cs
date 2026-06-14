@@ -1,15 +1,11 @@
-﻿using AcademicRegistry.ViewModels;
-using Avalonia.Controls;
-using StudentsViewModel = AcademicRegistry.ViewModels.Students.StudentsViewModel;
+﻿using Avalonia.Controls;
 
 namespace AcademicRegistry.Views.Students;
 
 public partial class StudentsView : UserControl
 {
-    public StudentsView(WindowViewModel windowViewModel)
+    public StudentsView()
     {
         InitializeComponent();
-
-        DataContext = new StudentsViewModel(windowViewModel);
     }
 }

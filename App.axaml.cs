@@ -47,10 +47,10 @@ public partial class App : Application
         {
             RequestedThemeVariant = ThemeVariant.Light;
 
-            desktop.MainWindow = serviceProvider.GetRequiredService<WindowView>();
-            {
-                DataContext = serviceProvider.GetRequiredService<WindowViewModel>();
-            };
+            var mainWindow = serviceProvider.GetRequiredService<WindowView>();
+            mainWindow.DataContext = serviceProvider.GetRequiredService<WindowViewModel>();
+
+            desktop.MainWindow = mainWindow;
         }
 
         base.OnFrameworkInitializationCompleted();

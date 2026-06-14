@@ -1,16 +1,11 @@
-﻿using AcademicRegistry.Models.Entities;
-using AcademicRegistry.ViewModels;
-using Avalonia.Controls;
-using SubjectInformationEditorViewModel = AcademicRegistry.ViewModels.Subjects.SubjectInformationEditorViewModel;
+﻿using Avalonia.Controls;
 
 namespace AcademicRegistry.Views.Subjects;
 
 public partial class SubjectInformationEditorView : UserControl
 {
-    public SubjectInformationEditorView(WindowViewModel windowViewModel, Subject? subject)
+    public SubjectInformationEditorView()
     {
         InitializeComponent();
-
-        DataContext = new SubjectInformationEditorViewModel(windowViewModel, subject);
     }
 }

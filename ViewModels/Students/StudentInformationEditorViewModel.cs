@@ -12,29 +12,41 @@ namespace AcademicRegistry.ViewModels.Students;
 public partial class StudentInformationEditorViewModel : ViewModelBase
 {
     public StudentInformationEditorViewModel(
+        StudentInformationEditorViewModel? studentInformationEditorViewModel,
         WindowViewModel windowViewModel,
         Student? student
     )
     {
         _windowViewModel = windowViewModel;
-        
-        Student = student;
-        Name = student is null
-            ? ""
-            : student.Name;
-        Surname = student is null
-            ? ""
-            : student.Surname;
-        Patronymic = student is null
-            ? ""
-            : student.Patronymic;
-        Subjects = student is null
-            ? []
-            : new ObservableCollection<Subject>(student.Subjects);
+
+        if (studentInformationEditorViewModel is null)
+        {
+            Student = student;
+            Name = student is null
+                ? ""
+                : student.Name;
+            Surname = student is null
+                ? ""
+                : student.Surname;
+            Patronymic = student is null
+                ? ""
+                : student.Patronymic;
+            Subjects = student is null
+                ? []
+                : new ObservableCollection<Subject>(student.Subjects);
+        }
+        else
+        {
+            Student = studentInformationEditorViewModel.Student;
+            Name = studentInformationEditorViewModel.Name!;
+            Surname = studentInformationEditorViewModel.Surname!;
+            Patronymic = studentInformationEditorViewModel.Patronymic!;
+            Subjects = studentInformationEditorViewModel.Subjects;
+        }
     }
 
     private readonly WindowViewModel _windowViewModel;
-    
+
     [ObservableProperty] public partial Student? Student { get; set; }
     [ObservableProperty] public partial string Name { get; set; }
     [ObservableProperty] public partial string Surname { get; set; }

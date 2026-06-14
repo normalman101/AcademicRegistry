@@ -1,15 +1,11 @@
-﻿using AcademicRegistry.Models.Repositories;
-using AcademicRegistry.ViewModels;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 
 namespace AcademicRegistry.Views;
 
 public partial class WindowView : Window
 {
-    public WindowView(StudentRepository studentRepository, SubjectRepository subjectRepository)
+    public WindowView()
     {
         InitializeComponent();
-
-        DataContext = new WindowViewModel(studentRepository, subjectRepository);
     }
 }

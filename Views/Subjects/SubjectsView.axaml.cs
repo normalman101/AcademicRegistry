@@ -1,15 +1,11 @@
-﻿using AcademicRegistry.ViewModels;
-using Avalonia.Controls;
-using SubjectsViewModel = AcademicRegistry.ViewModels.Subjects.SubjectsViewModel;
+﻿using Avalonia.Controls;
 
 namespace AcademicRegistry.Views.Subjects;
 
 public partial class SubjectsView : UserControl
 {
-    public SubjectsView(WindowViewModel windowViewModel)
+    public SubjectsView()
     {
         InitializeComponent();
-
-        DataContext = new SubjectsViewModel(windowViewModel);
     }
 }
