@@ -19,7 +19,10 @@ public partial class SubjectsViewModel(WindowViewModel windowViewModel) : ViewMo
     public void Add() => windowViewModel.ToSubjectEditorView(null);
 
     [RelayCommand]
-    public void Update() => windowViewModel.ToSubjectEditorView(Subject);
+    public void Update()
+    {
+        if (Subject is not null) windowViewModel.ToSubjectEditorView(Subject);
+    }
 
     [RelayCommand]
     public void Delete()
