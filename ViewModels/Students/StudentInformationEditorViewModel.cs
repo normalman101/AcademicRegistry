@@ -12,37 +12,25 @@ namespace AcademicRegistry.ViewModels.Students;
 public partial class StudentInformationEditorViewModel : ViewModelBase
 {
     public StudentInformationEditorViewModel(
-        StudentInformationEditorViewModel? studentInformationEditorViewModel,
         WindowViewModel windowViewModel,
         Student? student
     )
     {
         _windowViewModel = windowViewModel;
 
-        if (studentInformationEditorViewModel is null)
-        {
-            Student = student;
-            Name = student is null
-                ? ""
-                : student.Name;
-            Surname = student is null
-                ? ""
-                : student.Surname;
-            Patronymic = student is null
-                ? ""
-                : student.Patronymic;
-            Subjects = student is null
-                ? []
-                : new ObservableCollection<Subject>(student.Subjects);
-        }
-        else
-        {
-            Student = studentInformationEditorViewModel.Student;
-            Name = studentInformationEditorViewModel.Name!;
-            Surname = studentInformationEditorViewModel.Surname!;
-            Patronymic = studentInformationEditorViewModel.Patronymic!;
-            Subjects = studentInformationEditorViewModel.Subjects;
-        }
+        Student = student;
+        Name = student is null
+            ? ""
+            : student.Name;
+        Surname = student is null
+            ? ""
+            : student.Surname;
+        Patronymic = student is null
+            ? ""
+            : student.Patronymic;
+        Subjects = student is null
+            ? []
+            : new ObservableCollection<Subject>(student.Subjects);
     }
 
     private readonly WindowViewModel _windowViewModel;
@@ -56,7 +44,7 @@ public partial class StudentInformationEditorViewModel : ViewModelBase
     [ObservableProperty] public partial Subject? Subject { get; set; }
 
     [RelayCommand]
-    public void ToAvailableSubjectsView() => _windowViewModel.ToAvailableSubjectsView(this);
+    public void ToAvailableSubjectsView() => _windowViewModel.ToAvailableSubjects();
 
     [RelayCommand]
     public void DeleteSubject()
@@ -65,8 +53,12 @@ public partial class StudentInformationEditorViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    public void Cancel() => _windowViewModel.ToStudentsView();
-    
+    public void Cancel()
+    {
+        _windowViewModel.StudentInformationEditorViewModel = null;
+        _windowViewModel.ToStudents();
+    }
+
     [RelayCommand]
     public void Save()
     {
@@ -92,6 +84,7 @@ public partial class StudentInformationEditorViewModel : ViewModelBase
                 })) return;
         }
 
-        _windowViewModel.ToStudentsView();
+        _windowViewModel.StudentInformationEditorViewModel = null;
+        _windowViewModel.ToStudents();
     }
 }

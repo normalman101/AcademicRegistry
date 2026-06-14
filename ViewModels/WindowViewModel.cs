@@ -19,37 +19,63 @@ public partial class WindowViewModel : ViewModelBase
         SubjectRepository = subjectRepository;
 
         CurrentViewModel = new StudentsViewModel(this);
+
+        StudentsViewModel = new StudentsViewModel(this);
     }
-    
+
     [ObservableProperty] public partial StudentRepository StudentRepository { get; set; }
 
     [ObservableProperty] public partial SubjectRepository SubjectRepository { get; set; }
 
     [ObservableProperty] public partial ViewModelBase CurrentViewModel { get; set; }
+
+    public StudentsViewModel? StudentsViewModel { get; set; }
+
+    public StudentInformationEditorViewModel? StudentInformationEditorViewModel { get; set; }
+
+    public SubjectsViewModel? SubjectsViewModel { get; set; }
+
+    public SubjectInformationEditorViewModel? SubjectInformationEditorViewModel { get; set; }
+
+    public AvailableSubjectsViewModel? AvailableSubjectsViewModel { get; set; }
+
+    [RelayCommand]
+    public void ToStudents() => CurrentViewModel = new StudentsViewModel(this);
     
-    [RelayCommand]
-    public void ToStudentsView() => CurrentViewModel = new StudentsViewModel(this);
-
-    [RelayCommand]
-    public void ToSubjectsView() => CurrentViewModel = new SubjectsViewModel(this);
-
-    public void ToStudentEditorView(
-        StudentInformationEditorViewModel studentInformationEditorViewModel,
-        Student? student)
+    public void ToStudentInformationEditor(Student? student)
     {
-        CurrentViewModel = student is null
-            ? new StudentInformationEditorViewModel(studentInformationEditorViewModel, this, null)
-            : new StudentInformationEditorViewModel(studentInformationEditorViewModel, this, student);
+        StudentInformationEditorViewModel = student is null
+            ? new StudentInformationEditorViewModel(this, null)
+            : new StudentInformationEditorViewModel(this, student);
+
+        CurrentViewModel = StudentInformationEditorViewModel;
+    }
+
+    public void ToStudentInformationEditor() => CurrentViewModel = StudentInformationEditorViewModel!;
+
+    [RelayCommand]
+    public void ToSubjects()
+    {
+        SubjectsViewModel = new SubjectsViewModel(this);
+
+        CurrentViewModel = SubjectsViewModel;
     }
 
     public void ToSubjectEditorView(Subject? subject)
     {
+        SubjectInformationEditorViewModel = subject is null
+            ? new SubjectInformationEditorViewModel(this, null)
+            : new SubjectInformationEditorViewModel(this, subject);
+        
         CurrentViewModel = subject is null
             ? new SubjectInformationEditorViewModel(this, null)
             : new SubjectInformationEditorViewModel(this, subject);
     }
 
-    public void ToAvailableSubjectsView(
-        StudentInformationEditorViewModel studentInformationEditorViewModel
-    ) => CurrentViewModel = CurrentViewModel = new AvailableSubjectsViewModel(this, studentInformationEditorViewModel);
+    public void ToAvailableSubjects()
+    {
+        AvailableSubjectsViewModel = new AvailableSubjectsViewModel(this);
+
+        CurrentViewModel = AvailableSubjectsViewModel;
+    }
 }

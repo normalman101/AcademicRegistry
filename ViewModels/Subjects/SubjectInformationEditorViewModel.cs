@@ -17,7 +17,11 @@ public partial class SubjectInformationEditorViewModel(
         : subject.Name;
 
     [RelayCommand]
-    public void Cancel() => windowViewModel.ToSubjectsView();
+    public void Cancel()
+    {
+        windowViewModel.SubjectInformationEditorViewModel = null;
+        windowViewModel.ToSubjects();
+    }
 
     [RelayCommand]
     public void Save()
@@ -29,12 +33,13 @@ public partial class SubjectInformationEditorViewModel(
         else
         {
             if (!windowViewModel.SubjectRepository.Update(subject! with
-            {
-                Id = subject.Id,
-                Name = Name,
-            })) return;
+                {
+                    Id = subject.Id,
+                    Name = Name,
+                })) return;
         }
 
-        windowViewModel.ToSubjectsView();
+        windowViewModel.SubjectInformationEditorViewModel = null;
+        windowViewModel.ToSubjects();
     }
 }

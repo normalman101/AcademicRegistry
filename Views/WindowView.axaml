@@ -21,10 +21,10 @@
             BorderThickness="0, 0, 0, 2">
             <MenuItem
                 Header="Студенты"
-                Command="{Binding ToStudentsViewCommand}" />
+                Command="{Binding ToStudentsCommand}" />
             <MenuItem
                 Header="Предметы"
-                Command="{Binding ToSubjectsViewCommand}" />
+                Command="{Binding ToSubjectsCommand}" />
         </Menu>
 
         <ContentControl

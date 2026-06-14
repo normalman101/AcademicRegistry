@@ -16,12 +16,12 @@ public partial class StudentsViewModel(WindowViewModel windowViewModel) : ViewMo
     [ObservableProperty] public partial Student? Student { get; set; }
 
     [RelayCommand]
-    public void Add() => windowViewModel.ToStudentEditorView(null, null);
+    public void Add() => windowViewModel.ToStudentInformationEditor(null);
 
     [RelayCommand]
     public void Update()
     {
-        if (Student is not null) windowViewModel.ToStudentEditorView(null, Student);
+        if (Student is not null) windowViewModel.ToStudentInformationEditor(Student);
     }
 
     [RelayCommand]
