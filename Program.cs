@@ -1,5 +1,4 @@
 ﻿using Avalonia;
-using ReactiveUI.Avalonia;
 using System;
 
 namespace AcademicRegistry;
@@ -21,6 +20,5 @@ sealed class Program
             .WithDeveloperTools()
 #endif
             .WithInterFont()
-            .LogToTrace()
-            .UseReactiveUI();
+            .LogToTrace();
 }
