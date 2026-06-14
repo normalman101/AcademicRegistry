@@ -1,0 +1,77 @@
+﻿<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:m="using:AcademicRegistry.Models.Entities"
+    xmlns:vm="using:AcademicRegistry.ViewModels.Students"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+    x:DataType="vm:StudentInformationEditorViewModel"
+    x:Class="AcademicRegistry.Views.Students.StudentInformationEditorView">
+
+    <StackPanel
+        Orientation="Vertical"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Spacing="5">
+
+        <Button
+            Content="Назад"
+            Command="{Binding ToStudentsViewCommand}" />
+
+        <TextBox
+            PlaceholderText="Имя"
+            Text="{Binding Name}" />
+
+        <TextBox
+            PlaceholderText="Фамилия"
+            Text="{Binding Surname}" />
+
+        <TextBox
+            PlaceholderText="Отчество"
+            Text="{Binding Patronymic}" />
+
+        <ListBox
+            ItemsSource="{Binding Subjects}"
+            SelectedItem="{Binding Subject}"
+            Width="750"
+            Height="270">
+
+            <ListBox.ItemTemplate>
+
+                <DataTemplate x:DataType="m:Subject">
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="{Binding Name}" />
+
+                </DataTemplate>
+
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
+        <Grid ColumnDefinitions="*, *">
+
+            <Button
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                Content="Добавить"
+                Command="{Binding ToAvailableSubjectsViewCommand}" />
+
+            <Button
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                Content="Удалить"
+                Command="{Binding DeleteSubjectCommand}" />
+
+        </Grid>
+
+        <Button
+            HorizontalAlignment="Center"
+            Content="Сохранить"
+            Command="{Binding SaveCommand}" />
+
+    </StackPanel>
+
+</UserControl>
