@@ -31,9 +31,6 @@ public partial class App : Application
         services.AddTransient<WindowView>();
         services.AddTransient<WindowViewModel>();
 
-        services.AddTransient<HomeView>();
-        services.AddTransient<HomeViewModel>();
-
         services.AddTransient<SubjectsView>();
         services.AddTransient<SubjectsViewModel>();
         services.AddTransient<SubjectInformationEditorView>();

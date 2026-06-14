@@ -3,27 +3,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:m="using:AcademicRegistry.Models.Entities"
     xmlns:vm="using:AcademicRegistry.ViewModels.Subjects"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
     x:DataType="vm:AvailableSubjectsViewModel"
-    x:Class="AcademicRegistry.Views.Subjects.AvailableSubjectsView">
+    x:Class="AcademicRegistry.Views.Subjects.AvailableSubjectsView"
+    Padding="15">
 
     <Grid
-        RowDefinitions="Auto, Auto"
-        ColumnDefinitions="*, *, *"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center">
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        RowDefinitions="*, Auto"
+        RowSpacing="15">
 
         <ListBox
             Grid.Row="0"
-            Grid.Column="1"
             ItemsSource="{Binding AvailableSubjects}"
-            SelectedItem="{Binding Subject}"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Width="750"
-            Height="370">
+            SelectedItem="{Binding Subject}">
 
             <ListBox.ItemTemplate>
 
@@ -47,11 +40,13 @@
         <Button
             HorizontalAlignment="Center"
             Grid.Row="1"
-            Grid.Column="0"
             Content="Добавить"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Width="150"
+            Height="50"
             Command="{Binding AddCommand}" />
 
     </Grid>
-
 
 </UserControl>

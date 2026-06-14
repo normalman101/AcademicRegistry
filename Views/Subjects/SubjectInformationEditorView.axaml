@@ -2,31 +2,31 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:AcademicRegistry.ViewModels.Subjects"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
     x:DataType="vm:SubjectInformationEditorViewModel"
-    x:Class="AcademicRegistry.Views.Subjects.SubjectInformationEditorView">
+    x:Class="AcademicRegistry.Views.Subjects.SubjectInformationEditorView"
+    Padding="15">
 
-    <StackPanel
-        Orientation="Vertical"
+    <Grid
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
-        Spacing="5">
-
-        <Button
-            Content="Назад"
-            Command="{Binding ToSubjectsViewCommand}" />
+        RowDefinitions="Auto, *">
 
         <TextBox
+            Grid.Row="0"
             PlaceholderText="Название"
             Text="{Binding Name}" />
 
         <Button
+            Grid.Row="1"
             HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
             Content="Сохранить"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Width="150"
+            Height="50"
             Command="{Binding SaveCommand}" />
 
-    </StackPanel>
+    </Grid>
 
 </UserControl>

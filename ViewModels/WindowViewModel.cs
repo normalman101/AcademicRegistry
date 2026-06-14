@@ -24,48 +24,38 @@ public partial class WindowViewModel : ViewModelBase
 
         SubjectRepository = subjectRepository;
 
-        CurrentPage = new HomeView();
-
-        _homePage = new HomeView();
+        CurrentView = new StudentsView(this);
     }
-
-    // [ObservableProperty] public partial Student? Student { get; set; } = null;
-
+    
     [ObservableProperty] public partial StudentRepository StudentRepository { get; set; }
 
     [ObservableProperty] public partial SubjectRepository SubjectRepository { get; set; }
 
-    [ObservableProperty] public partial UserControl CurrentPage { get; set; }
-
-    private readonly UserControl _homePage;
-
+    [ObservableProperty] public partial UserControl CurrentView { get; set; }
+    
+    [RelayCommand]
+    public void ToStudentsView() => CurrentView = new StudentsView(this);
 
     [RelayCommand]
-    public void ToHomeView() => CurrentPage = _homePage;
-
-    [RelayCommand]
-    public void ToStudentsView() => CurrentPage = new StudentsView(this);
-
-    [RelayCommand]
-    public void ToSubjectsView() => CurrentPage = new SubjectsView(this);
+    public void ToSubjectsView() => CurrentView = new SubjectsView(this);
 
     public void ToStudentEditorView(
         StudentInformationEditorViewModel? studentInformationEditorViewModel,
         Student? student)
     {
-        CurrentPage = student is null
+        CurrentView = student is null
             ? new StudentInformationEditorView(studentInformationEditorViewModel, this, null)
             : new StudentInformationEditorView(studentInformationEditorViewModel, this, student);
     }
 
     public void ToSubjectEditorView(Subject? subject)
     {
-        CurrentPage = subject is null
+        CurrentView = subject is null
             ? new SubjectInformationEditorView(this, null)
             : new SubjectInformationEditorView(this, subject);
     }
 
     public void ToAvailableSubjectsView(
         StudentInformationEditorViewModel studentInformationEditorViewModel
-    ) => CurrentPage = CurrentPage = new AvailableSubjectsView(this, studentInformationEditorViewModel);
+    ) => CurrentView = CurrentView = new AvailableSubjectsView(this, studentInformationEditorViewModel);
 }

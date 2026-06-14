@@ -9,39 +9,42 @@ namespace AcademicRegistry.ViewModels.Students;
 
 [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 [SuppressMessage("ReSharper", "PropertyCanBeMadeInitOnly.Global")]
-public partial class StudentInformationEditorViewModel(
-    WindowViewModel windowViewModel,
-    Student? student
-) : ViewModelBase
+public partial class StudentInformationEditorViewModel : ViewModelBase
 {
-    [ObservableProperty] public partial Student? Student { get; set; } = student;
+    public StudentInformationEditorViewModel(
+        WindowViewModel windowViewModel,
+        Student? student
+    )
+    {
+        _windowViewModel = windowViewModel;
+        
+        Student = student;
+        Name = student is null
+            ? ""
+            : student.Name;
+        Surname = student is null
+            ? ""
+            : student.Surname;
+        Patronymic = student is null
+            ? ""
+            : student.Patronymic;
+        Subjects = student is null
+            ? []
+            : new ObservableCollection<Subject>(student.Subjects);
+    }
 
-    [ObservableProperty]
-    public partial string Name { get; set; } = student is null
-        ? ""
-        : student.Name;
-
-    [ObservableProperty]
-    public partial string Surname { get; set; } = student is null
-        ? ""
-        : student.Surname;
-
-    [ObservableProperty]
-    public partial string Patronymic { get; set; } = student is null
-        ? ""
-        : student.Patronymic;
+    private readonly WindowViewModel _windowViewModel;
+    
+    [ObservableProperty] public partial Student? Student { get; set; }
+    [ObservableProperty] public partial string Name { get; set; }
+    [ObservableProperty] public partial string Surname { get; set; }
+    [ObservableProperty] public partial string Patronymic { get; set; }
+    public ObservableCollection<Subject> Subjects { get; set; }
 
     [ObservableProperty] public partial Subject? Subject { get; set; }
 
-    public ObservableCollection<Subject> Subjects { get; set; } = student is null
-        ? []
-        : new ObservableCollection<Subject>(student.Subjects);
-
     [RelayCommand]
-    public void ToStudentsView() => windowViewModel.ToStudentsView();
-
-    [RelayCommand]
-    public void ToAvailableSubjectsView() => windowViewModel.ToAvailableSubjectsView(this);
+    public void ToAvailableSubjectsView() => _windowViewModel.ToAvailableSubjectsView(this);
 
     [RelayCommand]
     public void DeleteSubject()
@@ -54,7 +57,7 @@ public partial class StudentInformationEditorViewModel(
     {
         if (Student is null)
         {
-            if (!windowViewModel.StudentRepository.Add(new Student(
+            if (!_windowViewModel.StudentRepository.Add(new Student(
                         Name,
                         Surname,
                         Patronymic,
@@ -64,7 +67,7 @@ public partial class StudentInformationEditorViewModel(
         }
         else
         {
-            if (!windowViewModel.StudentRepository.Update(Student! with
+            if (!_windowViewModel.StudentRepository.Update(Student! with
                 {
                     Id = Student.Id,
                     Name = Name,
@@ -74,6 +77,6 @@ public partial class StudentInformationEditorViewModel(
                 })) return;
         }
 
-        ToStudentsView();
+        _windowViewModel.ToStudentsView();
     }
 }

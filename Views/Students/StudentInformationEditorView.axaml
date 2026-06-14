@@ -3,75 +3,79 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:m="using:AcademicRegistry.Models.Entities"
     xmlns:vm="using:AcademicRegistry.ViewModels.Students"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
     x:DataType="vm:StudentInformationEditorViewModel"
-    x:Class="AcademicRegistry.Views.Students.StudentInformationEditorView">
+    x:Class="AcademicRegistry.Views.Students.StudentInformationEditorView"
+    Padding="15">
 
-    <StackPanel
-        Orientation="Vertical"
+    <Grid
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
-        Spacing="5">
-
-        <Button
-            Content="Назад"
-            Command="{Binding ToStudentsViewCommand}" />
+        RowDefinitions="Auto, Auto, Auto, *, Auto"
+        RowSpacing="15">
 
         <TextBox
+            Grid.Row="0"
             PlaceholderText="Имя"
             Text="{Binding Name}" />
 
         <TextBox
+            Grid.Row="1"
             PlaceholderText="Фамилия"
             Text="{Binding Surname}" />
 
         <TextBox
+            Grid.Row="2"
             PlaceholderText="Отчество"
             Text="{Binding Patronymic}" />
 
-        <ListBox
-            ItemsSource="{Binding Subjects}"
-            SelectedItem="{Binding Subject}"
-            Width="750"
-            Height="270">
+        <Grid 
+            Grid.Row="3"
+            RowDefinitions="Auto, *">
 
-            <ListBox.ItemTemplate>
+            <Menu
+                Grid.Row="0"
+                BorderBrush="LightGray"
+                BorderThickness="0, 0, 0, 2">
+                <MenuItem
+                    Header="Добавить"
+                    Command="{Binding ToAvailableSubjectsViewCommand}" />
+                <MenuItem
+                    Header="Удалить"
+                    Command="{Binding DeleteSubjectCommand}" />
+            </Menu>
 
-                <DataTemplate x:DataType="m:Subject">
+            <ListBox
+                Grid.Row="1"
+                ItemsSource="{Binding Subjects}"
+                SelectedItem="{Binding Subject}">
 
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        Text="{Binding Name}" />
+                <ListBox.ItemTemplate>
 
-                </DataTemplate>
+                    <DataTemplate x:DataType="m:Subject">
 
-            </ListBox.ItemTemplate>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Text="{Binding Name}" />
 
-        </ListBox>
+                    </DataTemplate>
 
-        <Grid ColumnDefinitions="*, *">
+                </ListBox.ItemTemplate>
 
-            <Button
-                Grid.Column="0"
-                HorizontalAlignment="Center"
-                Content="Добавить"
-                Command="{Binding ToAvailableSubjectsViewCommand}" />
-
-            <Button
-                Grid.Column="1"
-                HorizontalAlignment="Center"
-                Content="Удалить"
-                Command="{Binding DeleteSubjectCommand}" />
-
+            </ListBox>
+            
         </Grid>
 
+
         <Button
+            Grid.Row="4"
             HorizontalAlignment="Center"
             Content="Сохранить"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Width="150"
+            Height="50"
             Command="{Binding SaveCommand}" />
 
-    </StackPanel>
+    </Grid>
 
 </UserControl>

@@ -3,27 +3,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:AcademicRegistry.ViewModels.Students"
     xmlns:m="using:AcademicRegistry.Models.Entities"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
     x:DataType="vm:StudentsViewModel"
-    x:Class="AcademicRegistry.Views.Students.StudentsView">
+    x:Class="AcademicRegistry.Views.Students.StudentsView"
+    Padding="15">
 
     <Grid
-        RowDefinitions="Auto, Auto"
-        ColumnDefinitions="*, *, *"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center">
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        RowDefinitions="*, Auto"
+        RowSpacing="15">
 
         <ListBox
             Grid.Row="0"
-            Grid.Column="1"
             ItemsSource="{Binding Students}"
-            SelectedItem="{Binding Student}"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Width="750"
-            Height="370">
+            SelectedItem="{Binding Student}">
 
             <ListBox.ItemTemplate>
 
@@ -54,30 +47,41 @@
 
         </ListBox>
 
-        <Button
-            HorizontalAlignment="Center"
+        <Grid
             Grid.Row="1"
-            Grid.Column="0"
-            Content="Добавить"
-            Command="{Binding AddCommand}">
-        </Button>
+            ColumnDefinitions="*, *, *">
 
-        <Button
-            HorizontalAlignment="Center"
-            Grid.Row="1"
-            Grid.Column="1"
-            Content="Обновить"
-            Command="{Binding UpdateCommand}">
-        </Button>
+            <Button
+                HorizontalAlignment="Center"
+                Grid.Column="0"
+                Content="Добавить"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Width="150"
+                Height="50"
+                Command="{Binding AddCommand}" />
 
-        <Button
-            HorizontalAlignment="Center"
-            Grid.Row="1"
-            Grid.Column="2"
-            Content="Удалить"
-            Command="{Binding DeleteCommand}"
-            CommandParameter="{Binding Student}">
-        </Button>
+            <Button
+                HorizontalAlignment="Center"
+                Grid.Column="1"
+                Content="Обновить"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Width="150"
+                Height="50"
+                Command="{Binding UpdateCommand}" />
+
+            <Button
+                HorizontalAlignment="Center"
+                Grid.Column="2"
+                Content="Удалить"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Width="150"
+                Height="50"
+                Command="{Binding DeleteCommand}" />
+            
+        </Grid>
 
     </Grid>
 
