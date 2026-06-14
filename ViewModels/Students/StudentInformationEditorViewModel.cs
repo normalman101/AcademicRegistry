@@ -65,6 +65,9 @@ public partial class StudentInformationEditorViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    public void Cancel() => _windowViewModel.ToStudentsView();
+    
+    [RelayCommand]
     public void Save()
     {
         if (Student is null)

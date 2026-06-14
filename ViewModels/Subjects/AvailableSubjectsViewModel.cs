@@ -20,6 +20,11 @@ public partial class AvailableSubjectsViewModel(
     [ObservableProperty] public partial Subject? Subject { get; set; }
 
     [RelayCommand]
+    public void Cancel() => windowViewModel.ToStudentEditorView(
+        studentInformationEditorViewModel,
+        studentInformationEditorViewModel.Student);
+
+    [RelayCommand]
     public void Add()
     {
         if (Subject is null) return;

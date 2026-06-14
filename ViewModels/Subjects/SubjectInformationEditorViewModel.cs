@@ -17,7 +17,7 @@ public partial class SubjectInformationEditorViewModel(
         : subject.Name;
 
     [RelayCommand]
-    public void ToSubjectsView() => windowViewModel.ToSubjectsView();
+    public void Cancel() => windowViewModel.ToSubjectsView();
 
     [RelayCommand]
     public void Save()
@@ -35,6 +35,6 @@ public partial class SubjectInformationEditorViewModel(
             })) return;
         }
 
-        ToSubjectsView();
+        windowViewModel.ToSubjectsView();
     }
 }
