@@ -28,7 +28,7 @@
             PlaceholderText="Отчество"
             Text="{Binding Patronymic}" />
 
-        <Grid 
+        <Grid
             Grid.Row="3"
             RowDefinitions="Auto, *">
 
@@ -36,12 +36,14 @@
                 Grid.Row="0"
                 BorderBrush="LightGray"
                 BorderThickness="0, 0, 0, 2">
+
                 <MenuItem
                     Header="Добавить"
                     Command="{Binding ToAvailableSubjectsViewCommand}" />
                 <MenuItem
                     Header="Удалить"
                     Command="{Binding DeleteSubjectCommand}" />
+
             </Menu>
 
             <ListBox
@@ -62,19 +64,35 @@
                 </ListBox.ItemTemplate>
 
             </ListBox>
-            
+
         </Grid>
 
-
-        <Button
+        <Grid
             Grid.Row="4"
-            HorizontalAlignment="Center"
-            Content="Сохранить"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Width="150"
-            Height="50"
-            Command="{Binding SaveCommand}" />
+            ColumnDefinitions="*, *">
+
+            <Button
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                Width="150"
+                Height="50"
+                Content="Сохранить"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding SaveCommand}" />
+
+            <Button
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                Width="150"
+                Height="50"
+                Content="Отменить"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding CancelCommand}" />
+
+        </Grid>
+
 
     </Grid>
 

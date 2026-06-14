@@ -3,9 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:m="using:AcademicRegistry.Models.Entities"
     xmlns:vm="using:AcademicRegistry.ViewModels.Subjects"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
     x:DataType="vm:SubjectsViewModel"
     x:Class="AcademicRegistry.Views.Subjects.SubjectsView"
     Padding="15">
@@ -42,31 +39,31 @@
             <Button
                 HorizontalAlignment="Center"
                 Grid.Column="0"
+                Width="150"
+                Height="50"
                 Content="Добавить"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Width="150"
-                Height="50"
                 Command="{Binding AddCommand}" />
 
             <Button
                 HorizontalAlignment="Center"
                 Grid.Column="1"
+                Width="150"
+                Height="50"
                 Content="Обновить"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Width="150"
-                Height="50"
                 Command="{Binding UpdateCommand}" />
 
             <Button
                 HorizontalAlignment="Center"
                 Grid.Column="2"
+                Width="150"
+                Height="50"
                 Content="Удалить"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Width="150"
-                Height="50"
                 Command="{Binding DeleteCommand}" />
 
         </Grid>

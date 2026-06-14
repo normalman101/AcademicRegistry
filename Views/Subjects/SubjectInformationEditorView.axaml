@@ -9,23 +9,40 @@
     <Grid
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
-        RowDefinitions="Auto, *">
+        RowDefinitions="Auto, *"
+        RowSpacing="15">
 
         <TextBox
             Grid.Row="0"
             PlaceholderText="Название"
             Text="{Binding Name}" />
 
-        <Button
+        <Grid
             Grid.Row="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Content="Сохранить"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Width="150"
-            Height="50"
-            Command="{Binding SaveCommand}" />
+            ColumnDefinitions="*, *"
+            VerticalAlignment="Bottom">
+
+            <Button
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                Width="150"
+                Height="50"
+                Content="Сохранить"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding SaveCommand}" />
+
+            <Button
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                Width="150"
+                Height="50"
+                Content="Отменить"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding CancelCommand}" />
+
+        </Grid>
 
     </Grid>
 

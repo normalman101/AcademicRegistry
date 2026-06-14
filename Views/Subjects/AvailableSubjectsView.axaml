@@ -22,14 +22,11 @@
 
                 <DataTemplate x:DataType="m:Subject">
 
-                    <Grid ColumnDefinitions="*">
-                        <!-- ReSharper disable Xaml.InvalidType -->
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            Grid.Column="0"
-                            Text="{Binding Name}" />
-                        <!-- ReSharper restore Xaml.InvalidType -->
-                    </Grid>
+                    <!-- ReSharper disable Xaml.InvalidType -->
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="{Binding Name}" />
+                    <!-- ReSharper restore Xaml.InvalidType -->
 
                 </DataTemplate>
 
@@ -37,15 +34,31 @@
 
         </ListBox>
 
-        <Button
-            HorizontalAlignment="Center"
+        <Grid
             Grid.Row="1"
-            Content="Добавить"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Width="150"
-            Height="50"
-            Command="{Binding AddCommand}" />
+            ColumnDefinitions="*, *">
+
+            <Button
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                Width="150"
+                Height="50"
+                Content="Добавить"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding AddCommand}" />
+
+            <Button
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                Width="150"
+                Height="50"
+                Content="Отменить"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding CancelCommand}" />
+
+        </Grid>
 
     </Grid>
 

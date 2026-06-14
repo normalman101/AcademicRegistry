@@ -1,8 +1,8 @@
 ﻿<UserControl
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:vm="using:AcademicRegistry.ViewModels.Students"
     xmlns:m="using:AcademicRegistry.Models.Entities"
+    xmlns:vm="using:AcademicRegistry.ViewModels.Students"
     x:DataType="vm:StudentsViewModel"
     x:Class="AcademicRegistry.Views.Students.StudentsView"
     Padding="15">
@@ -23,6 +23,7 @@
                 <DataTemplate x:DataType="m:Student">
 
                     <Grid ColumnDefinitions="*, *, *">
+
                         <!-- ReSharper disable Xaml.InvalidType -->
                         <TextBlock
                             Grid.Column="0"
@@ -39,6 +40,7 @@
                             HorizontalAlignment="Center"
                             Text="{Binding Patronymic}" />
                         <!-- ReSharper restore Xaml.InvalidType -->
+
                     </Grid>
 
                 </DataTemplate>
@@ -53,34 +55,34 @@
 
             <Button
                 HorizontalAlignment="Center"
+                Width="150"
+                Height="50"
                 Grid.Column="0"
                 Content="Добавить"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Width="150"
-                Height="50"
                 Command="{Binding AddCommand}" />
 
             <Button
                 HorizontalAlignment="Center"
                 Grid.Column="1"
+                Width="150"
+                Height="50"
                 Content="Обновить"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Width="150"
-                Height="50"
                 Command="{Binding UpdateCommand}" />
 
             <Button
                 HorizontalAlignment="Center"
                 Grid.Column="2"
+                Width="150"
+                Height="50"
                 Content="Удалить"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Width="150"
-                Height="50"
                 Command="{Binding DeleteCommand}" />
-            
+
         </Grid>
 
     </Grid>
